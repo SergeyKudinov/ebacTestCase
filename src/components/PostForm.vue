@@ -1,21 +1,21 @@
 <template>
     <form @submit.prevent>
-        <h4>Создание поста</h4>
+        <h4>Create todo</h4>
         <my-input
             v-model="post.title"
             type="text"
-            placeholder="Название"
+            placeholder="Name"
         />
         <my-input
             v-model="post.body"
             type="text"
-            placeholder="Описание"
+            placeholder="Description"
         />
         <my-button
             style="align-self: flex-end; margin-top: 15px;"
             @click="createPost"
         >
-            Создать
+            Create
         </my-button>
     </form>
 </template>

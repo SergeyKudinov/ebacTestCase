@@ -1,47 +1,40 @@
 <template>
-  <div class="app">
-    <h1>Страница с постами</h1>
-    <my-input
-        :model-value="searchQuery"
-        placeholder="Поиск..."
-    />
-    <div class="app_btns">
-        <my-button
-            @click="showDialog"
-        >
-            Создать пост
-        </my-button>
-    </div>
-    <my-dialog v-model:show="dialogVisible">
-        <PostForm
-            @create="createPost"
+    <div class="app">
+        <h1>Todos page</h1>
+        <my-input
+            :model-value="searchQuery"
+            placeholder="Search..."
         />
-    </my-dialog>
-    <ItemList
-        :posts="sortedAndSearchedPosts"
-        @remove="removePost"
-        v-if="!isPostsLoading"
-    />
-    <div v-else>Идет загрузка...</div>
-</div>
+        <div class="app_btns">
+            <my-button
+                @click="showDialog"
+            >
+                Create todo
+            </my-button>
+        </div>
+        <my-dialog v-model:show="dialogVisible">
+            <PostForm
+                @create="createPost"
+            />
+        </my-dialog>
+        <ItemList
+            :posts="sortedAndSearchedPosts"
+            @remove="removePost"
+            v-if="!isPostsLoading"
+        />
+        <div v-else>Идет загрузка...</div>
+    </div>
 </template>
 
 <script>
-import ItemList from './components/ItemList.vue';
+    import ItemList from './components/ItemList.vue';
     import PostForm from './components/PostForm.vue';
     import axios from 'axios';
-    import MySelect from './components/UI/MySelect.vue';
-    import MyInput from './components/UI/MyInput.vue';
-    import MyButton from './components/UI/MyButton.vue';
 
     export default {
         components: {
-            MyInput,
-            MySelect,
-            MyButton,
             ItemList,
             PostForm,
-            MySelect
         },
         data() {
             return{
@@ -70,7 +63,7 @@ import ItemList from './components/ItemList.vue';
             async fetchPosts() {
                 try {
                     this.isPostsLoading = true;
-                    const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=10');
+                    const response = await axios.get('https://jsonplaceholder.typicode.com/todos');
                     this.posts = response.data;
                 } catch(e) {
                     console.log(e);
@@ -98,6 +91,9 @@ import ItemList from './components/ItemList.vue';
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+  }
+  h1 {
+    margin-bottom: 15px;
   }
   .app {
     padding: 20px;

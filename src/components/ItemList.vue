@@ -1,6 +1,6 @@
 <template>
     <div v-show="posts.length > 0">
-        <h3>Список постов</h3>
+        <h3>Todos list</h3>
         <transition-group name="post_list">
             <PostItem
                 v-for="post in posts"
@@ -13,7 +13,7 @@
     <h2
         v-show="posts.length === 0"
         style="color: red">
-        Список постов пуст
+        Todos list is empty
     </h2>
 </template>
 
